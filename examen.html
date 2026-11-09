@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>credencial</title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Papelería Escolar</h1>
+        <h3> copias</h3>
+        <label>Copias a color:</label>
+        <input id="color" min="0" value="0">
+        <br>
+        <label>Copias blanco y negro:</label>
+        <input id="bn" min="0" value="0">
+      <br><br>
+        <label>
+            <input type="checkbox" id="credencial" style="width:auto">
+            Tengo credencial de estudiante
+        </label>
+        <br>
+        <button onclick="calcular()">Calcular total</button>
+        <div id="resultado"></div>
+    </div>
+    <script>
+        function calcular() {
+            let color = parseInt(document.getElementById("color").value) || 0;
+            let bn = parseInt(document.getElementById("bn").value) || 0;
+            let credencial = document.getElementById("credencial").checked;
+            let precioColor = 3;
+            let precioBN = 1;
+            let totalColor = color * precioColor;
+            let totalBN = bn * precioBN;
+            let total = totalColor + totalBN;
+            if (credencial) {
+                total = total * 0.90;
+            }
+            document.getElementById("resultado").innerHTML =
+                "Copias a color: " + color +
+                "<br>Copias blanco y negro: " + bn +
+                "<br>Subtotal: $" + (totalColor + totalBN).toFixed(2) +
+                (credencial ? "<br>Descuento: 25%" : "") +
+                "<br><br>Total a pagar: $" + total.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
